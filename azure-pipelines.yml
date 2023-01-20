@@ -1,4 +1,5 @@
 # temporarily disable trigger during pipeline development
+
 trigger: none
 pr: none
 
@@ -51,4 +52,14 @@ stages:
                 script: |
                   Write-Host "QA Deployment Completed"
 # #QA Build & Deployment script completed
-# #*****************************************************************************************
+# #***************
+**************************************************************************
+- task: GitHubRelease@1
+  inputs:
+    gitHubConnection: 'ShekharCloud'
+    repositoryName: '$(Build.Repository.Name)'
+    action: 'create'
+    target: '$(Build.SourceVersion)'
+    tagSource: 'gitTag'
+#    changeLogCompareToRelease: 'lastNonDraftRelease'
+    changeLogType: 'commitBased'
