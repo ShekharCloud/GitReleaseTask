@@ -54,7 +54,7 @@ stages:
 # #QA Build & Deployment script completed
 # #***************
 ##**************************************************************************#
-stages:
+#stages:
 - stage: GIT release
   displayName: GIT tag
   # condition: eq(variables.shouldDeployToQA, true)
