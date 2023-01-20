@@ -1,0 +1,54 @@
+# temporarily disable trigger during pipeline development
+trigger: none
+pr: none
+
+resources:
+- repo: self
+
+variables:
+#  dockerImageName: $(Build.DefinitionName)
+#  dockerImageTag: $(Build.BuildNumber)
+#  deploystatus: 'true'
+  # isQA: $[eq(variables['Build.SourceBranch'], 'refs/heads/staging')]
+  # isUAT: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/release/')] 
+  # isPREPROD: $[eq(variables.docker_file, 'Dockerfile_production_k8s')]
+  # isPrereleaseuat: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/release/')] 
+  # shouldDeployToQA: $[eq(variables.isQA, true)] # True if conditions are met to deploy to QA environment.
+  # shouldDeployToUAT: $[eq(variables.isUAT, true)] # True if conditions are met to deploy to UAT environment.
+  # shouldDeployToPREPROD: $[eq(variables.isPREPROD, true)] #user defined variable - Required to update at run time 'MANUALLY' from dockerfile_staging to dockerfile_production for 'PREPROD' and 'PROD' deployments.
+  # shouldDeployToRelease: $[eq(variables.isPrereleaseuat, true)]
+
+stages:
+- stage: QA_Build_Deployment
+  displayName: QA Deployment
+  # condition: eq(variables.shouldDeployToQA, true)
+  jobs:
+  - job: QABuild
+    displayName: QA Build
+    steps:
+    - task: PowerShell@2
+      inputs:
+        targetType: 'inline'
+        script: |
+          # Write your PowerShell commands here.
+          
+          Write-Host "QA BUild Completed"
+# QA Deployment starts from Here (Kubernetes)       
+  - deployment: deploy
+    displayName: QA Deployment
+    dependsOn: QABuild
+    condition: succeeded()
+    pool:
+      vmImage: 'ubuntu-latest'
+    environment: SUPPORT-PORTAL-QA-K8'S
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+            - task: PowerShell@2
+              inputs:
+                targetType: 'inline'
+                script: |
+                  Write-Host "QA Deployment Completed"
+# #QA Build & Deployment script completed
+# #*****************************************************************************************
