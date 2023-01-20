@@ -68,6 +68,6 @@ stages:
         repositoryName: '$(Build.Repository.Name)'
         action: 'create'
         #target: '$(Build.SourceVersion)'
-        tagSource: '1.0'
+        tagSource: '$(build.buildnumber)'
         changeLogCompareToRelease: 'lastNonDraftRelease'
         changeLogType: 'commitBased'
