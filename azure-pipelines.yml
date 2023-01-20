@@ -54,12 +54,20 @@ stages:
 # #QA Build & Deployment script completed
 # #***************
 ##**************************************************************************#
-- task: GitHubRelease@1
-  inputs:
-    gitHubConnection: 'ShekharCloud'
-    repositoryName: '$(Build.Repository.Name)'
-    action: 'create'
-    target: '$(Build.SourceVersion)'
-    tagSource: 'gitTag'
-    changeLogCompareToRelease: 'lastNonDraftRelease'
-    changeLogType: 'commitBased'
+stages:
+- stage: GIT release
+  displayName: GIT tag
+  # condition: eq(variables.shouldDeployToQA, true)
+  jobs:
+  - job: GIT
+    displayName: GIT
+    steps:
+    - task: GitHubRelease@1
+      inputs:
+        gitHubConnection: 'ShekharCloud'
+        repositoryName: '$(Build.Repository.Name)'
+        action: 'create'
+        target: '$(Build.SourceVersion)'
+        tagSource: 'gitTag'
+        changeLogCompareToRelease: 'lastNonDraftRelease'
+        changeLogType: 'commitBased'
