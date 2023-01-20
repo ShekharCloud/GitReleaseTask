@@ -53,7 +53,7 @@ stages:
                   Write-Host "QA Deployment Completed"
 # #QA Build & Deployment script completed
 # #***************
-**************************************************************************
+##**************************************************************************#
 - task: GitHubRelease@1
   inputs:
     gitHubConnection: 'ShekharCloud'
