@@ -5,7 +5,7 @@ pr: none
 resources:
 - repo: self
 
-variables:
+#variables:
 #  dockerImageName: $(Build.DefinitionName)
 #  dockerImageTag: $(Build.BuildNumber)
 #  deploystatus: 'true'
