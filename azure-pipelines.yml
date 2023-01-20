@@ -61,5 +61,5 @@ stages:
     action: 'create'
     target: '$(Build.SourceVersion)'
     tagSource: 'gitTag'
-   changeLogCompareToRelease: 'lastNonDraftRelease'
+    changeLogCompareToRelease: 'lastNonDraftRelease'
     changeLogType: 'commitBased'
