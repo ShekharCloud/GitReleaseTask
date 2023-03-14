@@ -62,12 +62,13 @@ stages:
   - job: GIT
     displayName: GIT
     steps:
-    - task: GitHubRelease@1
+    - task: GitHubRelease@0
       inputs:
         gitHubConnection: 'ShekharCloud'
         repositoryName: '$(Build.Repository.Name)'
         action: 'create'
         target: '$(Build.SourceVersion)'
-        tagSource: '$(build.buildnumber)'
-        changeLogCompareToRelease: 'lastNonDraftRelease'
+        tagSource: 'auto'
+        addChangeLog: true
+        changeLogCompareToRelease: 'lastFullRelease'
         changeLogType: 'commitBased'
