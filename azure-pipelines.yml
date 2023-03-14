@@ -69,6 +69,6 @@ stages:
         action: 'create'
         target: '$(Build.SourceVersion)'
         tagSource: 'auto'
-        addChangeLog: true
-        changeLogCompareToRelease: 'lastFullRelease'
+        #addChangeLog: true
+        #changeLogCompareToRelease: 'lastFullRelease'
         changeLogType: 'commitBased'
