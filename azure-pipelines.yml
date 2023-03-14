@@ -72,7 +72,7 @@ stages:
         tag: '$(Build.BuildNumber)-$(releaseType)'
         title: 'Project $(Build.BuildNumber) ($(releaseType))'
         assets: $(Build.ArtifactStagingDirectory)/**/*.tar.gz
-        title: '$(Build.BuildNumber)_$(Build.BuildId)'
+        #title: '$(Build.BuildNumber)_$(Build.BuildId)'
         isPreRelease: true
         releaseNotesSource: 'inline'
         releaseNotesInline: 'todo'
