@@ -65,10 +65,19 @@ stages:
     - task: GitHubRelease@0
       inputs:
         gitHubConnection: 'ShekharCloud'
-        repositoryName: '$(Build.Repository.Name)'
+        repositoryName: 'ShekharCloud/GitReleaseTask'
         action: 'create'
         target: '$(Build.SourceVersion)'
-        tagSource: 'auto'
+        tagSource: userSpecifiedTag
+        tag: '$(Build.BuildNumber)_$(Build.BuildId)'
+        assets: $(Build.ArtifactStagingDirectory)/**/*.tar.gz
+        title: '$(Build.BuildNumber)_$(Build.BuildId)'
+        releaseNotesSource: inline
+        releaseNotesInline: 'Post to UAT deployment and validation'
+        isPreRelease: true
+        addChangeLog: true
+        compareWith: 'lastFullRelease'
         #addChangeLog: true
         #changeLogCompareToRelease: 'lastFullRelease'
-        changeLogType: 'commitBased'
+        #changeLogType: 'commitBased'
+        #assetUploadMode: 'replace'
