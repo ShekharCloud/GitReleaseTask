@@ -62,7 +62,7 @@ stages:
   - job: GIT
     displayName: GIT
     steps:
-    - task: GitHubRelease@0
+    - task: GitHubRelease@1
       inputs:
         gitHubConnection: 'ShekharCloud'
         repositoryName: 'ShekharCloud/GitReleaseTask'
