@@ -69,8 +69,8 @@ stages:
         action: 'create'
         target: '$(Build.SourceVersion)'
         tagSource: 'userSpecifiedTag'
-        tag: '$(Build.BuildNumber)-$(Environment.Name)'
-        title: 'UAT $(Build.BuildNumber)-$(Environment.Name)'
+        tag: '$(Build.BuildNumber)-$(Build.BuildId)'
+        title: 'UAT $(Build.BuildNumber)-$(Build.BuildId)'
         assets: $(Build.ArtifactStagingDirectory)/**/*.tar.gz
         #title: '$(Build.BuildNumber)_$(Build.BuildId)'
         isPreRelease: true
