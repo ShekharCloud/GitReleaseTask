@@ -68,7 +68,7 @@ stages:
         repositoryName: 'ShekharCloud/GitReleaseTask'
         action: 'create'
         target: '$(Build.SourceVersion)'
-        tagSource: userSpecifiedTag
+        tagSource: 'manual'
         tag: '$(Build.BuildNumber)_$(Build.BuildId)'
         assets: $(Build.ArtifactStagingDirectory)/**/*.tar.gz
         title: '$(Build.BuildNumber)_$(Build.BuildId)'
